@@ -120,12 +120,12 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
-    <Compile Include="Dialogs\EchoDialog.cs" />
-    <Compile Include="Dialogs\SandwitchOrder.cs" />
-    <Compile Include="Dialogs\SimpleAlarmDialog.cs" />
+    <Compile Include="Dialogs\CoreDialog.cs" />
+    <Compile Include="Dialogs\MediaCompassDialog.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Messages\ContactDetailsMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
