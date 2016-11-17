@@ -10,6 +10,10 @@ using Newtonsoft.Json;
 
 namespace TehBoht
 {
+    using Microsoft.Bot.Builder.Dialogs;
+
+    using TehBoht.Dialogs;
+
     [BotAuthentication]
     public class MessagesController : ApiController
     {
@@ -26,8 +30,10 @@ namespace TehBoht
                 int length = (activity.Text ?? string.Empty).Length;
 
                 // return our reply to the user
-                Activity reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
-                await connector.Conversations.ReplyToActivityAsync(reply);
+                //Activity reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
+                //await connector.Conversations.ReplyToActivityAsync(reply);
+                await Conversation.SendAsync(activity, () => new SimpleAlarmDialog());
+
             }
             else
             {
