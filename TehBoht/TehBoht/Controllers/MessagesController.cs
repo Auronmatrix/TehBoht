@@ -11,12 +11,18 @@ using Newtonsoft.Json;
 namespace TehBoht
 {
     using Microsoft.Bot.Builder.Dialogs;
+    using Microsoft.Bot.Builder.FormFlow;
 
     using TehBoht.Dialogs;
 
     [BotAuthentication]
     public class MessagesController : ApiController
     {
+        internal static IDialog<SandwichOrder> MakeRootDialog()
+        {
+            return Chain.From(() => FormDialog.FromForm(SandwichOrder.BuildForm));
+        }
+
         /// <summary>
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
@@ -32,7 +38,7 @@ namespace TehBoht
                 // return our reply to the user
                 //Activity reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
                 //await connector.Conversations.ReplyToActivityAsync(reply);
-                await Conversation.SendAsync(activity, () => new SimpleAlarmDialog());
+                await Conversation.SendAsync(activity, MakeRootDialog);
 
             }
             else
